@@ -30,6 +30,29 @@ header h1 {
 
 ul{
     text-align: center;
+    
+}
+
+#pSynopsisElement{
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: justify;
+}
+
+#pInfoElement{
+    text-align: center;
+}
+
+img{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    justify-content: right;
+}
+
+div{
+    border: solid #333;
+    border-radius: 20px;
+    margin: 20px 20px 20px 20px;
 }
 
 main {
