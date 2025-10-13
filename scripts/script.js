@@ -1,6 +1,6 @@
 APIKEY = null;
+var choix = 1;
 
-// Fonction utilisée pour saisir la clé API et l'enregistrer
 function setApiKey() {
   APIKEY = prompt("Veuillez entrer votre clé API: ");
   if (APIKEY) {
@@ -18,17 +18,32 @@ document.getElementById("champRecherche").addEventListener("keypress", function 
   }
 });
 
-// Fonction utilisée pour recherher un anime
+function setChoix(user){
+  choix = user;
+}
+
 function rechercheAnime() {
+  var lien = "https://anime-db.p.rapidapi.com/"
   if (!APIKEY || APIKEY.trim() === "") {
     alert("Veuillez d'abord entrer votre clé API !");
     return;
   }
-  let nom = document.getElementById("champRecherche").value;
-  console.log(nom);
-  const ulElement = document.querySelector("ul");
+  let val = document.getElementById("champRecherche").value;
+  const ulElement = document.getElementById("contenu");
   ulElement.innerHTML = "";
-  fetch("https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=" + nom.trim(), {
+  switch (choix){
+    case 1:
+      lien += "anime?page=1&size=10&search="+val.trim();
+      console.log(lien);
+    case 2:
+      lien += "anime/by-id/"+val;
+    case 3:
+      lien += "anime/by-ranking/"+val;;
+    case 4:
+      ;
+    
+  }
+  fetch(lien.trim() + val.trim(), {
     method: "GET",
     headers: {
       "X-RapidAPI-Key": APIKEY.trim(),

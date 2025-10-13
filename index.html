@@ -20,12 +20,21 @@
             <form id="formRecherche">
                 <label for="champRecherche">Nom de l'anime :</label>
                 <input type="text" id="champRecherche" placeholder="Nom de l'anime">
+                <div class="form-row">
+                <label for="endpoint">Choisissez un type de recherche :</label>
+                <select id="endpoint" class ="menuRechercher">
+                    <option value="search" onclick="setChoix(1)">Recherche par titre</option>
+                    <option value="by-id " onclick="setChoix(2)">Recherche par ID</option>
+                    <option value="by-ranking" onclick="setChoix(3)">Recherche par rang</option>
+                    <option value="by-genre" onclick="setChoix(4)">Recherche par genre</option>
+                </select>
+                </div>
                 <button type="button" id="search" onclick="rechercheAnime()">Rechercher</button>
                 <button type="button" id="reset">Réinitialiser</button>
             </form>
             <button id="setKey" onclick="setApiKey()">Saisir sa clé API</button>
         </section>
-        <ul>
+        <ul id= "contenu" class ="contenu">
         </ul>
     </main>
 

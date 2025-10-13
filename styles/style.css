@@ -28,7 +28,7 @@ header h1 {
     font-weight: 700;
 }
 
-ul{
+.contenu{
     text-align: center;
     
 }
@@ -49,12 +49,51 @@ img{
     justify-content: right;
 }
 
-div{
+.divCard{
     border: solid #333;
     border-radius: 20px;
     margin: 20px 20px 20px 20px;
 }
 
+.menuRechercher {
+    padding: 1rem;
+    font-size: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    background: white;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    font-weight: 600;
+}
+
+.menuRechercher:hover {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.menuRechercher:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.menuRechercher option {
+    padding: 10px;
+    background: white;
+    color: #555;
+}
+
+.menuRechercher option:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
 main {
     flex: 1;
     max-width: 900px;
