@@ -12,7 +12,9 @@
 
 <body>
     <header>
+        <button id="changeTheme" onclick="toggleTheme()">Thème sombre</button>
         <h1>Anime Requester</h1>
+        <button id="setKey" onclick="setApiKey()">Saisir sa clé API</button>
     </header>
 
     <main>
@@ -23,16 +25,20 @@
                 <div class="form-row">
                 <label for="endpoint">Choisissez un type de recherche :</label>
                 <select id="endpoint" class ="menuRechercher">
-                    <option value="search" onclick="setChoix(1)">Recherche par titre</option>
-                    <option value="by-id " onclick="setChoix(2)">Recherche par ID</option>
-                    <option value="by-ranking" onclick="setChoix(3)">Recherche par rang</option>
-                    <option value="by-genre" onclick="creerGenre()">Recherche par genre</option>
+                    <option value="search">Recherche par titre</option>
+                    <option value="by-id">Recherche par ID</option>
+                    <option value="by-ranking">Recherche par rang</option>
+                    <option value="by-genre">Recherche par genre</option>
                 </select>
                 </div>
                 <button type="button" id="search" onclick="rechercheAnime()">Rechercher</button>
                 <button type="button" id="reset">Réinitialiser</button>
+                <div id="zoneGenres">
+                    <h3>Choisissez un ou plusieurs genres :</h3>
+                    <div id="checkboxGenres"></div>
+                </div>
             </form>
-            <button id="setKey" onclick="setApiKey()">Saisir sa clé API</button>
+            
         </section>
         <ul id= "contenu" class ="contenu">
         </ul>

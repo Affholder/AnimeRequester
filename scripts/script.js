@@ -1,10 +1,22 @@
 APIKEY = null;
-var choix = 1;
+const choix = document.getElementById('endpoint');
+
+function toggleTheme() {
+  document.body.classList.toggle('dark-theme');
+  if (document.body.classList.contains('dark-theme')) {
+      document.getElementById('changeTheme').textContent = 'Thème clair';
+  } else {
+      document.getElementById('changeTheme').textContent = 'Thème sombre';
+  }
+}
 
 function setApiKey() {
   APIKEY = prompt("Veuillez entrer votre clé API: ");
   if (APIKEY) {
     alert("Clé API enregistrée !");
+    chargerGenres();
+    afficherCheckboxGenres();
+
   }
   else {
     alert("Clé API obligatoire !");
@@ -18,10 +30,9 @@ document.getElementById("champRecherche").addEventListener("keypress", function 
   }
 });
 
-function setChoix(user){
-  choix = user;
+function creerGenre(){
+  
 }
-
 
 function rechercheAnime() {
   var lien = "https://anime-db.p.rapidapi.com/"
@@ -32,19 +43,22 @@ function rechercheAnime() {
   let val = document.getElementById("champRecherche").value;
   const ulElement = document.getElementById("contenu");
   ulElement.innerHTML = "";
-  switch (choix){
-    case 1:
+  switch (choix.value){
+    case "search":
       lien += "anime?page=1&size=10&search="+val.trim();
       console.log(lien);
       break;
-    case 2:
+    case "by-id":
       lien += "anime/by-id/"+val;
       break;
-    case 3:
+    case "by-ranking":
       lien += "anime/by-ranking/"+val;
       console.log(lien);
       break;
-    case 4:
+    case "by-genre":
+      const genres = Array.from(document.querySelectorAll('input[name="genre"]:checked')).map(cb => cb.value);
+      if (genres.length === 0) return alert("Veuillez sélectionner au moins un genre !");
+      lien += `anime?page=1&size=10&genres=${encodeURIComponent(genres.join(","))}`;
       break;
       ;
     
@@ -100,3 +114,58 @@ function creerCarteAnime(anime, ulElement) {
 
   ulElement.appendChild(divCard);
 }
+
+  document.getElementById("endpoint").addEventListener("change", (e) => {
+    const selected = e.target.value;
+    const zoneGenres = document.getElementById("zoneGenres");
+    if (selected === "by-genre") {
+      zoneGenres.style.display = "grid";
+    } else {
+      zoneGenres.style.display = "none";
+    }
+  });
+
+function chargerGenres() {
+  var lien = "https://anime-db.p.rapidapi.com/"
+  if (!APIKEY) return;
+
+  fetch(lien + "genre", {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": APIKEY.trim(),
+      "X-RapidAPI-Host": "anime-db.p.rapidapi.com"
+    }
+  })
+    .then(resp => resp.json())
+    .then(genres => {
+      console.log("Genres récupérés :", genres);
+      afficherCheckboxGenres(genres);
+    })
+    .catch(err => {
+      console.error("Erreur récupération genres :", err);
+    });
+}
+
+function afficherCheckboxGenres(genres) {
+  const container = document.getElementById("checkboxGenres");
+  container.innerHTML = "";
+
+  genres.forEach(item => {
+    const genreName = item._id;
+
+    const label = document.createElement("label");
+    label.style.display = "flex";
+    label.style.alignItems = "center";
+    label.style.gap = "5px";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.name = "genre";
+    checkbox.value = genreName;
+
+    label.appendChild(checkbox);
+    label.appendChild(document.createTextNode(genreName));
+    container.appendChild(label);
+  });
+}
+

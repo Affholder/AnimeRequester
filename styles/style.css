@@ -1,3 +1,134 @@
+body.dark-theme {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #e0e0e0;
+}
+
+body.dark-theme header {
+    background: rgba(30, 30, 30, 0.95);
+}
+
+body.dark-theme header h1 {
+    background: linear-gradient(270deg, #5a6fd8 0%, #6a4c93);
+    background-size: 800% 800%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 3s ease infinite;
+}
+
+body.dark-theme main {
+    background: rgba(40, 40, 40, 0.98);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme label {
+    color: #b0b0b0;
+}
+
+body.dark-theme .divCard {
+    border-color: #555;
+}
+
+body.dark-theme #champRecherche {
+    background: #2a2a2a;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-theme #champRecherche:focus {
+    border-color: #8b9dff;
+    box-shadow: 0 0 0 3px rgba(139, 157, 255, 0.2);
+}
+
+body.dark-theme .menuRechercher {
+    background: #2a2a2a;
+    border-color: #444;
+    color: #b0b0b0;
+}
+
+body.dark-theme .menuRechercher:hover {
+    border-color: #8b9dff;
+    box-shadow: 0 0 0 3px rgba(139, 157, 255, 0.2);
+}
+
+body.dark-theme .menuRechercher:focus {
+    border-color: #8b9dff;
+    box-shadow: 0 0 0 3px rgba(139, 157, 255, 0.3);
+}
+
+body.dark-theme .menuRechercher option {
+    background: #2a2a2a;
+    color: #b0b0b0;
+}
+
+body.dark-theme #search,
+body.dark-theme #setKey {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4c93 100%);
+}
+
+body.dark-theme #search:hover,
+body.dark-theme #setKey:hover {
+    box-shadow: 0 6px 20px rgba(90, 111, 216, 0.5);
+}
+
+body.dark-theme #reset {
+    background: #3a3a3a;
+    color: #b0b0b0;
+}
+
+body.dark-theme #reset:hover {
+    background: #4a4a4a;
+}
+
+body.dark-theme #resultats {
+    background: #2a2a2a;
+    color: #e0e0e0;
+}
+
+body.dark-theme footer {
+    background: rgba(30, 30, 30, 0.95);
+    color: linear-gradient(135deg, #5a6fd8 0%, #6a4c93 100%);
+
+}
+
+body.dark-theme footer p {
+    background: linear-gradient(270deg, #5a6fd8 0%, #6a4c93);
+    background-size: 800% 800%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 5s ease infinite;
+}
+
+#changeTheme {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #14d3b3 0%, #3211c7 100%);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#changeTheme:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+body.dark-theme #changeTheme {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4c93 100%);
+}
+
+body.dark-theme #changeTheme:hover {
+    box-shadow: 0 6px 20px rgba(90, 111, 216, 0.5);
+}
+
+body.dark-theme #checkboxGenres label{
+    color: white;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +137,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #14d3b3 0%, #3211c7 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -16,16 +147,25 @@ body {
 header {
     background: rgba(255, 255, 255, 0.95);
     padding: 2rem;
-    text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header h1 {
-    font-size: 2.5rem;
-    color: #667eea;
+    font-size: 3em;
+    font-weight: bold;
+    background: linear-gradient(270deg, #14d3b3 0%, #3211c7);
+    background-size: 800% 800%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 5s ease infinite;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-weight: 700;
+    flex: 1;
+    text-align: center;
+    margin: 0;
 }
 
 .contenu{
@@ -85,7 +225,7 @@ img{
 }
 
 .menuRechercher option:hover {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #14d3b3 0%, #3211c7 100%);
     color: white;
 }
 
@@ -149,7 +289,7 @@ label {
 }
 
 #search, #setKey {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #14d3b3 0%, #3211c7 100%);
     color: white;
 }
 
@@ -176,14 +316,52 @@ label {
     min-height: 100px;
 }
 
+
+zoneGenres {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 600px;
+    background-color: #f9f9f9;
+  }
+  
+  #checkboxGenres {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  
+  #checkboxGenres label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    user-select: none;
+    padding-top: 20px;
+  }
+  
+  #checkboxGenres input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+
 footer {
-    background: rgba(255, 255, 255, 0.95);
     padding: 1.5rem;
     text-align: center;
-    color: #666;
+    color: #ffffff;
     font-size: 0.9rem;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 -6px 6px rgba(255, 255, 255, 0.05);
 }
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
 @media (max-width: 768px) {
     header h1 {
