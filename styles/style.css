@@ -24,8 +24,33 @@ body.dark-theme label {
     color: #b0b0b0;
 }
 
-body.dark-theme .divCard {
-    border-color: #555;
+body.dark-theme #divCard {
+    position: relative;
+    padding: 2rem;
+    border-radius: 20px;
+    margin: 20px;
+    z-index: 0;
+}
+
+body.dark-theme #divCard::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(270deg, #5a6fd8 0%, #6a4c93);
+    background-size: 800% 800%;
+    animation: gradientMove 5s ease infinite;
+    border-radius: 23px;
+    z-index: -1;
+
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    padding: 3px;
 }
 
 body.dark-theme #champRecherche {
@@ -125,7 +150,7 @@ body.dark-theme #changeTheme:hover {
     box-shadow: 0 6px 20px rgba(90, 111, 216, 0.5);
 }
 
-body.dark-theme #checkboxGenres label{
+body.dark-theme #checkboxGenres label {
     color: white;
 }
 
@@ -168,31 +193,54 @@ header h1 {
     margin: 0;
 }
 
-.contenu{
+.contenu {
     text-align: center;
-    
+
 }
 
-#pSynopsisElement{
+#pSynopsisElement {
     margin-left: 20px;
     margin-right: 20px;
     text-align: justify;
 }
 
-#pInfoElement{
+#pInfoElement {
     text-align: center;
 }
 
-img{
+img {
     margin-bottom: 20px;
     margin-top: 20px;
     justify-content: right;
 }
 
-.divCard{
-    border: solid #333;
+#divCard {
+    position: relative;
+    padding: 2rem;
     border-radius: 20px;
-    margin: 20px 20px 20px 20px;
+    margin: 20px;
+    z-index: 0;
+}
+
+#divCard::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(270deg, #14d3b3, #3211c7, #14d3b3);
+    background-size: 800% 800%;
+    animation: gradientMove 5s ease infinite;
+    border-radius: 23px;
+    z-index: -1;
+
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    padding: 3px;
 }
 
 .menuRechercher {
@@ -234,6 +282,7 @@ img{
     flex-direction: column;
     gap: 0.5rem;
 }
+
 main {
     flex: 1;
     max-width: 900px;
@@ -276,7 +325,8 @@ label {
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-#formRecherche button, #setKey {
+#formRecherche button,
+#setKey {
     padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: 600;
@@ -288,12 +338,14 @@ label {
     letter-spacing: 1px;
 }
 
-#search, #setKey {
+#search,
+#setKey {
     background: linear-gradient(135deg, #14d3b3 0%, #3211c7 100%);
     color: white;
 }
 
-#search:hover, #setKey:hover {
+#search:hover,
+#setKey:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
@@ -316,6 +368,9 @@ label {
     min-height: 100px;
 }
 
+#zoneGenres {
+    display: none;
+}
 
 zoneGenres {
     margin-top: 15px;
@@ -324,15 +379,15 @@ zoneGenres {
     border-radius: 5px;
     max-width: 600px;
     background-color: #f9f9f9;
-  }
-  
-  #checkboxGenres {
+}
+
+#checkboxGenres {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 10px;
-  }
-  
-  #checkboxGenres label {
+}
+
+#checkboxGenres label {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -341,13 +396,13 @@ zoneGenres {
     color: #333;
     user-select: none;
     padding-top: 20px;
-  }
-  
-  #checkboxGenres input[type="checkbox"] {
+}
+
+#checkboxGenres input[type="checkbox"] {
     width: 18px;
     height: 18px;
     cursor: pointer;
-  }
+}
 
 footer {
     padding: 1.5rem;
@@ -358,22 +413,31 @@ footer {
 }
 
 @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
 
 @media (max-width: 768px) {
     header h1 {
         font-size: 2rem;
     }
-    
+
     main {
         margin: 2rem auto;
         padding: 1.5rem;
     }
-    
-    #formRecherche button, #setKey {
+
+    #formRecherche button,
+    #setKey {
         padding: 0.8rem 1.5rem;
     }
 }
