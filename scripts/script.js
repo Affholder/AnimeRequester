@@ -22,6 +22,7 @@ function setChoix(user){
   choix = user;
 }
 
+
 function rechercheAnime() {
   var lien = "https://anime-db.p.rapidapi.com/"
   if (!APIKEY || APIKEY.trim() === "") {
@@ -35,15 +36,21 @@ function rechercheAnime() {
     case 1:
       lien += "anime?page=1&size=10&search="+val.trim();
       console.log(lien);
+      break;
     case 2:
       lien += "anime/by-id/"+val;
+      break;
     case 3:
-      lien += "anime/by-ranking/"+val;;
+      lien += "anime/by-ranking/"+val;
+      console.log(lien);
+      break;
     case 4:
+      break;
       ;
     
   }
-  fetch(lien.trim() + val.trim(), {
+  
+  fetch(lien.trim(), {
     method: "GET",
     headers: {
       "X-RapidAPI-Key": APIKEY.trim(),
@@ -58,23 +65,38 @@ function rechercheAnime() {
 }
 
 function afficherAnime(data, ulElement) {
-  for (const anime of data.data) {
-    const divCard = document.createElement("div");
-    divCard.id = "divCard";
-    const pSynopsisElement = document.createElement("p");
-    pSynopsisElement.id = "pSynopsisElement";
-    const pInfoElement = document.createElement("p");
-    pInfoElement.id = "pInfoElement";
-    const h1Element = document.createElement("h1");
-    const imgElement = document.createElement("img");
-    h1Element.innerText = `${anime.title}`;
-    imgElement.src = `${anime.image}`;
-    pSynopsisElement.innerText = `${anime.synopsis}`;
-    pInfoElement.innerText = `${anime.genres.join(", ")} \n rank :${anime.ranking}\n Episodes : ${anime.episodes}`;
-    divCard.appendChild(h1Element);
-    divCard.appendChild(imgElement);
-    divCard.appendChild(pSynopsisElement);
-    divCard.appendChild(pInfoElement);
-    ulElement.appendChild(divCard);
+  if (Array.isArray(data.data)) {
+    for (const anime of data.data) {
+      creerCarteAnime(anime, ulElement);
+    }
   }
+  else {
+    creerCarteAnime(data, ulElement);
+  }
+}
+
+function creerCarteAnime(anime, ulElement) {
+  const divCard = document.createElement("div");
+  divCard.id = "divCard";
+
+  const h1Element = document.createElement("h1");
+  h1Element.innerText = anime.title;
+
+  const imgElement = document.createElement("img");
+  imgElement.src = anime.image;
+
+  const pSynopsisElement = document.createElement("p");
+  pSynopsisElement.id = "pSynopsisElement";
+  pSynopsisElement.innerText = anime.synopsis;
+
+  const pInfoElement = document.createElement("p");
+  pInfoElement.id = "pInfoElement";
+  pInfoElement.innerText = `${anime.genres?.join(", ") ?? "Genres inconnus"}\nRank: ${anime.ranking ?? "?"}\nEpisodes: ${anime.episodes ?? "?"}`;
+
+  divCard.appendChild(h1Element);
+  divCard.appendChild(imgElement);
+  divCard.appendChild(pSynopsisElement);
+  divCard.appendChild(pInfoElement);
+
+  ulElement.appendChild(divCard);
 }
